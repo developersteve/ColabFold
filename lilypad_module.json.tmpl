@@ -1,0 +1,33 @@
+{
+  "machine": {
+    "gpu": 1,
+    "cpu": 4000,
+    "ram": 16000
+  },
+  "job": {
+    "APIVersion": "V1beta1",
+    "Spec": {
+      "Deal": {
+        "Concurrency": 1
+      },
+      "Docker": {
+        "Entrypoint": [
+          "/bin/sh", "-c", "/usr/local/envs/colabfold/bin/colabfold_batch --fasta_path /data/input.fasta --result_dir /data/output --use-gpu"
+        ],
+        "Image": "nvidia/cuda:12.4.1-base-ubuntu22.04@sha256:671b47ccd0da94d4b0d623b1b4101f5fb6d01e2688b18f54c2d6853fdc23810f"
+      },
+      "Engine": "Docker",
+      "Network": {
+        "Type": "Bridge"
+      },
+      "PublisherSpec": {
+        "Type": "IPFS"
+      },
+      "Resources": {
+        "GPU": "1"
+      },
+      "Timeout": 3600,
+      "Verifier": "Noop"
+    }
+  }
+}
